@@ -1,0 +1,144 @@
+*{
+    box-sizing: border-box;
+    
+   
+}
+body{
+    background-color:slategrey;
+}
+.section-center{
+    text-align: center;
+    background-color: lightblue;
+    position: relative;
+    z-index: 30;
+    margin: 20vh auto;
+    max-width: 50vw;
+    border-radius: 5px;
+    box-shadow: 5px 3px 5px 3px black;
+    
+}
+.alert{
+    text-transform: capitalize;
+    display: inline-block;
+    position: relative;
+    font-size: 1.2rem;
+    width: 80%;
+    border-radius: 5px;
+}
+.alert-failed{
+    background-color: rgb(241, 183, 183);
+}
+.alert-success{
+    background-color: green;
+}
+.header-container{
+    margin-top: 2vh;
+    position: relative;
+    display: inline-block
+}
+.header h1{
+    text-transform: capitalize;
+}
+.form-container{
+    position: relative;
+    
+    width: 80%;
+    margin: 0px auto;
+    
+}
+.form{
+    display:inline-flex;
+    position: relative;
+    width: 100%;
+}
+.to-do{
+    position: relative;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 5px;
+    width: 75%;
+    border: none;
+}
+.submit-btn{
+    border: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 25%;
+    background-color: steelblue;
+    transition: all 0.5s;
+    letter-spacing: 2px;
+    text-transform: capitalize;
+    padding: 5px;
+}
+.submit-btn:hover{
+    background-color: lightsteelblue;
+    color: white;
+}
+.list-container{
+    position: relative;
+    width: 80%;
+    margin: 5vh auto;
+    visibility: hidden;
+    
+}
+.show-list{
+    visibility: visible;
+}
+.list{
+    display: flex;
+    margin-bottom: 2vh;
+    width: 100%;
+    position: relative;
+    border-radius: 5px;
+    padding: 2px;
+    
+    
+    
+}
+.list:hover{
+    background-color: lightskyblue;
+    transition: all 1s;
+}
+.list p{
+    margin: 0px;
+    max-width: 70%;
+    word-wrap: break-word;
+    text-transform: capitalize;
+    text-align: left;
+}
+.to-do-list{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    
+}
+.btn-container{
+    display: inline-flex;
+    position: absolute;
+    right: 0px;
+    top: 25%;
+    bottom: 25%;
+    margin: 0px;
+}
+.edit-btn{
+    color: green;
+    text-transform: capitalize;
+    border: none;
+    border-radius: 5px;
+    background: transparent;
+}
+.delete-btn{
+    color: red;
+    text-transform: capitalize;
+    border: none;
+    border-radius: 5px;
+    background-color: transparent;
+}
+.clr-btn{
+    border: none;
+    background-color: lightblue;
+    letter-spacing: 3px;
+    text-transform: capitalize;
+    color: red;
+    
+}

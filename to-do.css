@@ -25,7 +25,7 @@ body{
     width: 80%;
     border-radius: 5px;
 }
-.alert-failed{
+.alert-danger{
     background-color: rgb(241, 183, 183);
 }
 .alert-success{
@@ -140,5 +140,6 @@ body{
     letter-spacing: 3px;
     text-transform: capitalize;
     color: red;
+    margin-bottom: 2vh;
     
 }

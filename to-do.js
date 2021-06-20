@@ -45,30 +45,18 @@ let editID=''
 
 form.addEventListener('submit', addItems)
 clrBtn.addEventListener('click', clearItems)
+window.addEventListener('DOMContentLoaded', loadItems)
 
 function addItems(e){
     e.preventDefault()
     value=toDo.value
+    let id=new Date().getTime().toString()
     if(value && !editFlag){
-        let article=document.createElement('article')
-        article.classList.add('list')
-        let id=new Date().getTime().toString()
-        let dataID=document.createAttribute('data-id')
-        dataID.value=id
-        article.setAttributeNode(dataID)
-        article.innerHTML=` <p>${value}</p>
-        <div class="btn-container">
-            <button class="edit-btn">edit</button>
-            <button class="delete-btn">delete</button>
-        </div>`
-        let deleteBtn=article.querySelector('.delete-btn')
-        let editBtn=article.querySelector('.edit-btn')
-        deleteBtn.addEventListener('click', deleteItems)
-        editBtn.addEventListener('click', editItems) 
-        list.appendChild(article)
-        container.classList.add('show-list')
+        displayItems(id, value )
+        
         displayAlert('Event added!','success')
         toDefault()
+        addToLocalStorage(id, value)
         
         
 
@@ -76,11 +64,14 @@ function addItems(e){
     }
     else if(value && editFlag){
         editElement.innerHTML=value
+        id=editID
         displayAlert('edited to-do event!','success')
         toDefault()
+        editLocalStorage(id, editElement.innerHTML)
     }
     else{
         displayAlert('please enter an event!', 'danger')
+        toDefault()
     }
 }
 function displayAlert(text, action){
@@ -106,14 +97,19 @@ function clearItems(){
     container.classList.remove('show-list')
     displayAlert('to-do list empty!','danger')
     toDefault()
+    clearLocalStorage()
+    
 }
 function deleteItems(e){
     let target=e.currentTarget.parentElement.parentElement
+    let id=target.dataset.id
     list.removeChild(target)
     if(list.children.length===0){
         container.classList.remove('show-list')
     }
     displayAlert('your to-do deleted!','danger')
+    toDefault()
+    deleteFromLocalStorage(id)
 }
 function editItems(e){
     editFlag=true
@@ -122,6 +118,77 @@ function editItems(e){
     editID=target.dataset.id
     toDo.value=editElement.innerHTML
     submit.innerHTML='edit'
+   
+    
+}
+function addToLocalStorage(id, value){
+    let toDo={id, value}
+    let items=getLocalStorage()
+    items.push(toDo)
+    
+    localStorage.setItem('mylist', JSON.stringify(items))
+    
+}
+function getLocalStorage(){
+    
+    if(localStorage.getItem('mylist') ==null){
+       return []
+    }
+    else{
+        return JSON.parse(localStorage.getItem('mylist'))
+    }
+    // return localStorage.getItem('mylist') ? JSON.parse(localStorage.getItem('mylist')) : []
+
+}
+function deleteFromLocalStorage(id){
+    let items = getLocalStorage()
+    items=items.filter(function(item){
+        if(item.id != id){
+            return item
+        }
+        
+    })
+    localStorage.setItem('mylist', JSON.stringify(items))
+}
+function clearLocalStorage(){
+    localStorage.clear('mylist')
+}
+function editLocalStorage(id, value){
+    let items=getLocalStorage()
+    items=items.map(function(item){
+        if(item.id == id){
+            item.value= value
+        }
+        return item
+    })
+    localStorage.setItem('mylist', JSON.stringify(items))
+}
+function loadItems(){
+    let items=getLocalStorage()
+    items.forEach(function(item){
+        displayItems(item.id, item.value)
+    })
+   
     
 }
 
+function displayItems(id, value){
+        let article=document.createElement('article')
+        article.classList.add('list')
+        let dataID=document.createAttribute('data-id')
+        dataID.value=id
+        article.setAttributeNode(dataID)
+        article.innerHTML=` <p>${value}</p>
+        <div class="btn-container">
+            <button class="edit-btn">edit</button>
+            <button class="delete-btn">delete</button>
+        </div>`
+        let deleteBtn=article.querySelector('.delete-btn')
+        let editBtn=article.querySelector('.edit-btn')
+        deleteBtn.addEventListener('click', deleteItems)
+        editBtn.addEventListener('click', editItems) 
+        list.appendChild(article)
+        container.classList.add('show-list')
+
+
+}

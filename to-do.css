@@ -21,7 +21,7 @@ body{
     text-transform: capitalize;
     position: relative;
     font-size: 1.2rem;
-    border-radius: 5px;
+    border-radius: 8px;
     display: inline-block;
     width: 80%;
 }
@@ -41,7 +41,6 @@ body{
 }
 .form-container{
     position: relative;
-    
     width: 80%;
     margin: 0px auto;
     
@@ -98,8 +97,7 @@ body{
 .time-count{
     position: absolute;
     width:40%;
-    height: auto;
-    left: 35%;
+    left: 40%;
     top: 25%;
     
     
@@ -165,4 +163,44 @@ body{
     color: red;
     margin-bottom: 2vh;
     
+}
+
+@media screen and (max-width:650px){
+    .section-center{
+        text-align: center;
+        background-color: lightblue;
+        position: relative;
+        z-index: 30;
+        margin: 20vh auto;
+        min-width: 80vw;
+        border-radius: 5px;
+        box-shadow: 0px 3px 4px black;
+        
+    }
+}
+@media screen and (max-width:850px){
+    .section-center{
+        text-align: center;
+        background-color: lightblue;
+        position: relative;
+        z-index: 30;
+        margin: 20vh auto;
+        min-width: 80vw;
+        border-radius: 5px;
+        box-shadow: 0px 3px 4px black;
+        
+    }
+}
+@media screen and (max-width:1050px){
+    .section-center{
+        text-align: center;
+        background-color: lightblue;
+        position: relative;
+        z-index: 30;
+        margin: 20vh auto;
+        min-width: 80vw;
+        border-radius: 5px;
+        box-shadow: 0px 3px 4px black;
+        
+    }
 }
